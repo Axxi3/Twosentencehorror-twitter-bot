@@ -1,7 +1,20 @@
-require("dotenv").config({ path: __dirname + "/.env" });  
-const CronJob = require("cron").CronJob;   
+require("dotenv").config({ path: __dirname + "/.env" });
+const express = require("express");
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+const CronJob = require("cron").CronJob;
 const axios = require("axios");
-const { twitterClient } = require("./twitterClient.js")   
+const { twitterClient } = require("./twitterClient.js"); 
+
+
+app.get("/", (req, res) => {
+  res.send("Hello from the Express server!");
+});  
+
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
 
 const tweet = async (data) => {
   let tvShowQuotes = data;
@@ -67,8 +80,8 @@ const tweet = async (data) => {
  
 
 
-
-const cronTweetfordata = new CronJob( "0 */3 * * *",  async () => {
+//0 */3 * * *
+const cronTweetfordata = new CronJob( "* * * * *",  async () => {
   console.log("data loaded");   
 
 
