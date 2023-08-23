@@ -81,36 +81,40 @@ const tweet = async (data) => {
 
 
 //0 */3 * * *
-const cronTweetfordata = new CronJob( "0 */3 * * *",  async () => {
-  console.log("data loaded");   
 
 
+
+
+
+const cronTweetfordata = new cron.CronJob("0 */3 * * *", async () => {
+  console.log("Data loaded");
 
   const options = {
     method: 'GET',
     url: 'https://subreddit-scraper.p.rapidapi.com/subreddit',
     params: {
-       q: 'TwoSentenceHorror',
+      q: 'TwoSentenceHorror',
       limit: '25'
     },
     headers: {
-      'X-RapidAPI-Key': '3b7a0ef5f1msha3a7cf231bf6c24p1229a7jsn582f6d9f7cfb',
+      'X-RapidAPI-Key': "https://subreddit-scraper.p.rapidapi.com/subreddit", // Use your own environment variable here
       'X-RapidAPI-Host': 'subreddit-scraper.p.rapidapi.com'
     }
   };
-  
+
   try {
     const response = await axios.request(options);
-    tweet(response.data.posts)
+    const posts = response.data.posts;
+    tweet(posts); // Assuming you have the tweet function defined elsewhere
   } catch (error) {
     console.error(error);
   }
-
-
- 
-};
+});
 
 cronTweetfordata.start();
+
+
+
 
 
 
