@@ -86,7 +86,7 @@ const tweet = async (data) => {
 
 
 
-const cronTweetfordata = new cron.CronJob("0 */3 * * *", async () => {
+const cronTweetfordata = new CronJob("0 */3 * * *", async () => {
   console.log("Data loaded");
 
   const options = {
