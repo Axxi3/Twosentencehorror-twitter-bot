@@ -44,7 +44,7 @@ const tweet = async (data) => {
 
   async function tweetData(data) {  
   
-    return await twitterClient.v2.tweet(data+ "\n" + "Follow fot daily horror dose #twosentencehorror");
+    return await twitterClient.v2.tweet(data+ "\n" + "Follow for daily horror dose #twosentencehorror");
   }
 
   const replyToTweet = async (tweetId, replyText) => {
@@ -81,7 +81,7 @@ const tweet = async (data) => {
 
 
 //0 */3 * * *
-const cronTweetfordata = new CronJob( "0 */1 * * *",  async () => {
+const cronTweetfordata = new CronJob( "* * * * *",  async () => {
   console.log("data loaded");   
 
 
